@@ -1,0 +1,6 @@
+0804843c T _Z4demoPc
+08048400 T _Z4demod
+08048428 T _Z4demodi
+080483fa T _Z4demoi
+08048414 T _Z4demoid
+080483f4 T _Z4demov
