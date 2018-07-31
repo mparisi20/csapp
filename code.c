@@ -5,6 +5,7 @@ int greaterthan10(int x);
 int shift_left2_rightn(int, int);
 unsigned float2bit(float);
 double bit2double(unsigned, unsigned);
+float bit2float(unsigned dword);
 
 int main()
 {
@@ -73,6 +74,9 @@ int main()
 	int result = fp(3, &y); // no need to use *... fp is known to be a function pointer and x86 jumps to its address
 	
 	
+	unsigned ui = 0x4427aaaf;
+	printf("%f\n", bit2float(ui));
+	
 	
 	
 	return 0;
@@ -82,8 +86,6 @@ int fun(int x, int *p)
 {
 	return 0;
 }
-	
-	
 
 unsigned float2bit(float f)
 {
@@ -93,6 +95,16 @@ unsigned float2bit(float f)
 	} temp;
 	temp.f = f;
 	return temp.u; // return the bit representation of f (same 4 bytes of memory, but interpreted as unsigned)
+}
+
+float bit2float(unsigned dword)
+{
+	union {
+		unsigned a;
+		float f;
+	} temp;
+	temp.a = dword;
+	return temp.f;
 }
 
 double bit2double(unsigned lsdword, unsigned msdword) // argument names reflect little-endianness
