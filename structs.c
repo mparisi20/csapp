@@ -32,7 +32,7 @@ int main()
 	struct point origin, *pp;
 	pp = &origin;
 	int a  = (*pp).x;
-	
+	a = pp->x;
 	
 	
 	return 0;
