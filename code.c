@@ -6,6 +6,7 @@ int shift_left2_rightn(int, int);
 unsigned float2bit(float);
 double bit2double(unsigned, unsigned);
 float bit2float(unsigned dword);
+unsigned long long double2bit(double);
 
 int main()
 {
@@ -77,6 +78,8 @@ int main()
 	unsigned ui = 0x4427aaaf;
 	printf("%f\n", bit2float(ui));
 	
+	unsigned long long ull = double2bit(60000.45);
+	printf("ull = %d\n", ull);
 	
 	
 	return 0;
@@ -95,6 +98,26 @@ unsigned float2bit(float f)
 	} temp;
 	temp.f = f;
 	return temp.u; // return the bit representation of f (same 4 bytes of memory, but interpreted as unsigned)
+}
+
+unsigned long long double2bit(double d)
+{
+	union {
+		double d;
+		unsigned long long ull;
+	} temp;
+	printf("sizeof(temp) = %d\n", sizeof(temp));
+	temp.d = d;
+	return temp.ull;
+}
+
+int sum(int *ptr, int count)
+{
+	int result = 0;
+	while (--count) {
+		result += *ptr++;
+	}
+	return result;
 }
 
 float bit2float(unsigned dword)
